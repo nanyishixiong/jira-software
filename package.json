@@ -1,6 +1,7 @@
 {
   "name": "jira",
   "version": "0.1.0",
+  "main": "index.tsx",
   "private": true,
   "dependencies": {
     "@commitlint/cli": "^17.4.2",
@@ -13,6 +14,7 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "eslint-config-prettier": "^8.6.0",
+    "qs": "^6.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -24,7 +26,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "js": "json-server --watch --port 3001 __json_server_mock__/db.json "
   },
   "eslintConfig": {
     "extends": [
@@ -52,11 +55,10 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "*.{js,css,md,ts,tsx}": "prettier --write"
+    "*.{js,jsx,css,md,ts,tsx}": "prettier --write"
   }
 }
