@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
  * @param {*} value
  * @returns
  */
-export const isFalsy = (value: any) => (value === 0 ? false : !value);
+export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
 
 /**
  * 删除对象中的空值，0除外
@@ -24,13 +24,13 @@ export const cleanObject = (object: Object) => {
   return result;
 };
 
-export const useMount = (callback: Function) => {
+export const useMount = (callback: () => void) => {
   useEffect(() => {
     callback();
   }, []);
 };
 
-export const useDebounce = (value: any, delay?: number) => {
+export const useDebounce = (value: unknown, delay?: number): any => {
   const [debounceValue, setDebounceValue] = useState(value);
 
   useEffect(() => {
