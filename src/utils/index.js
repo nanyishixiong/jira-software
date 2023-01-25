@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 /**
  * 判断是否为空值，0 不是空值
  * @param {*} value
@@ -18,4 +20,32 @@ export const cleanObject = (object) => {
     }
   });
   return result;
+};
+
+export const useMount = (callback) => {
+  useEffect(() => {
+    callback();
+  }, []);
+};
+
+export const useDebounce = (value, delay) => {
+  const [debounceValue, setDebounceValue] = useState(value);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebounceValue(value), delay);
+    return () => clearTimeout(timer);
+  }, [value, delay]);
+
+  return debounceValue;
+};
+
+const debounce = (func, delay) => {
+  let timer = null;
+  return function (...params) {
+    let context = this;
+    timer && clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(context, params);
+    }, delay);
+  };
 };
