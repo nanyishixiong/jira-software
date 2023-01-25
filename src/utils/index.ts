@@ -5,30 +5,32 @@ import { useEffect, useState } from "react";
  * @param {*} value
  * @returns
  */
-export const isFalsy = (value) => (value === 0 ? false : !value);
+export const isFalsy = (value: any) => (value === 0 ? false : !value);
 
 /**
  * 删除对象中的空值，0除外
  * @param {*} object
  * @returns
  */
-export const cleanObject = (object) => {
+export const cleanObject = (object: Object) => {
   const result = { ...object };
   Object.keys(object).forEach((key) => {
+    // @ts-ignore
     if (isFalsy(object[key])) {
+      // @ts-ignore
       delete result[key];
     }
   });
   return result;
 };
 
-export const useMount = (callback) => {
+export const useMount = (callback: Function) => {
   useEffect(() => {
     callback();
   }, []);
 };
 
-export const useDebounce = (value, delay) => {
+export const useDebounce = (value: any, delay?: number) => {
   const [debounceValue, setDebounceValue] = useState(value);
 
   useEffect(() => {
@@ -37,15 +39,4 @@ export const useDebounce = (value, delay) => {
   }, [value, delay]);
 
   return debounceValue;
-};
-
-const debounce = (func, delay) => {
-  let timer = null;
-  return function (...params) {
-    let context = this;
-    timer && clearTimeout(timer);
-    timer = setTimeout(() => {
-      func.apply(context, params);
-    }, delay);
-  };
 };
