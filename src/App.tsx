@@ -1,14 +1,13 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import { ProjectListScreen } from "./screens/project-list";
-import { TestTSHook } from "test_hook";
-import { LoginScreen } from "screens/login/login-screen";
+import { useAuth } from "context/auth-context";
+import { AuthenticatedApp } from "authenticated-app";
+import { UnauthenticatedApp } from "unauthenticated-app";
 
 function App() {
+  const { user } = useAuth();
   return (
     <div className="App">
-      <LoginScreen></LoginScreen>
+      {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
     </div>
   );
 }
