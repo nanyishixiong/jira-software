@@ -33,17 +33,17 @@ export const AuthenticatedApp = () => {
                 {
                   key: "logout",
                   label: (
-                    <a href="" onClick={logout}>
+                    <Button type="link" onClick={logout}>
                       登出
-                    </a>
+                    </Button>
                   ),
                 },
               ],
             }}
           >
-            <a href="" onClick={(e) => e.preventDefault()}>
+            <Button type="link" onClick={(e) => e.preventDefault()}>
               Hi，{user?.name}
-            </a>
+            </Button>
           </Dropdown>
         </HeaderRight>
       </Header>
