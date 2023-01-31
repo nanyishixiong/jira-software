@@ -59,3 +59,24 @@ export const useArray = <T>(initialValue: T[]) => {
     },
   };
 };
+
+export const useDocumentTitle = (
+  title: string,
+  keepOnUnmount: boolean = true
+) => {
+  const oldTitle = document.title;
+  console.log("渲染时的oldtitle", oldTitle);
+
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+
+  useEffect(() => {
+    return () => {
+      if (!keepOnUnmount) {
+        console.log("卸载时的oldtitle", oldTitle);
+        document.title = oldTitle;
+      }
+    };
+  }, []);
+};
