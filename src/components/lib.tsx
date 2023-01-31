@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { Spin, Typography } from "antd";
+import { DevTools } from "jira-dev-tool";
 
 export const Row = styled.div<{
   gap?: number | boolean;
@@ -20,3 +22,25 @@ export const Row = styled.div<{
         : undefined};
   }
 `;
+
+const FullPage = styled.div`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const FullPageLoding = () => (
+  <FullPage>
+    <Spin size="large" />
+  </FullPage>
+);
+
+export const FullPageErrorCallback = ({ error }: { error: Error | null }) => (
+  <FullPage>
+    <Typography.Text type="danger">
+      <DevTools />
+      {error?.message}
+    </Typography.Text>
+  </FullPage>
+);
