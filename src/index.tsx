@@ -1,3 +1,4 @@
+import "./wdyr";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -13,12 +14,10 @@ const root = ReactDOM.createRoot(
 
 loadServer(() => {
   root.render(
-    <React.StrictMode>
-      <AppProviders>
-        <DevTools />
-        <App />
-      </AppProviders>
-    </React.StrictMode>
+    <AppProviders>
+      <DevTools />
+      <App />
+    </AppProviders>
   );
 });
 
