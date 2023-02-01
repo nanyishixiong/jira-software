@@ -1,7 +1,7 @@
 import React, { Component, ReactNode } from "react";
 
 type FallbackRender = (props: { error: Error | null }) => React.ReactElement;
-// PropsWithChildren React 定义的utils type
+// PropsWithChildren React 定义的utils type 生成一个带自定义属性的类型
 export class ErrorBoundary extends Component<
   React.PropsWithChildren<{ fallbackRender: FallbackRender }>,
   { error: Error | null }
