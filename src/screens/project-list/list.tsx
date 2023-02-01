@@ -16,6 +16,7 @@ export interface Project {
 
 interface ListProps extends TableProps<Project> {
   users: User[];
+  refresh?: () => void;
 }
 
 export const List = ({ users, ...props }: ListProps) => {
@@ -25,7 +26,8 @@ export const List = ({ users, ...props }: ListProps) => {
    * pinProject = (pin: boolean) => mutate({ id: project.id, pin })
    * 这里函数两个参数获取时机不同, 可利用函数柯里化简化如下:
    */
-  const pinProject = (id: number) => (pin: boolean) => mutate({ id, pin });
+  const pinProject = (id: number) => (pin: boolean) =>
+    mutate({ id, pin }).then(props.refresh);
   return (
     <Table
       pagination={false}

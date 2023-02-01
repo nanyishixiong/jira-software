@@ -13,7 +13,12 @@ export const ProjectListScreen = () => {
   useDocumentTitle("项目列表", false);
 
   const [param, setParam] = useProjectsSearchParams();
-  const { isLoading, error, data: list } = useProject(useDebounce(param, 500));
+  const {
+    isLoading,
+    error,
+    data: list,
+    retry,
+  } = useProject(useDebounce(param, 500));
   const { data: users } = useUser();
 
   return (
@@ -30,6 +35,7 @@ export const ProjectListScreen = () => {
         })}
         users={users || []}
         loading={isLoading}
+        refresh={retry}
       />
     </Container>
   );
