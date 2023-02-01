@@ -3,7 +3,11 @@ import { ProjectListScreen } from "screens/project-list";
 import { Button, Dropdown } from "antd";
 import styled from "@emotion/styled";
 import { Row } from "components/lib";
+// 一种以react组件引入svg图片的方式，优点：支持样式配置
 import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
+import { Navigate, Routes, Route } from "react-router";
+import { BrowserRouter as Router } from "react-router-dom";
+import { ProjectScreen } from "screens/project";
 
 /**
  * grid 和 flex 各自的应用场景
@@ -17,42 +21,58 @@ import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
  */
 
 export const AuthenticatedApp = () => {
-  const { logout, user } = useAuth();
   return (
     <Container>
-      <Header between={true} marginBottom={1}>
-        <HeaderLeft gap={true}>
-          <SoftwareLogo width={"18rem"} color={"rgb(38,132,255)"} />
-          <h2>项目</h2>
-          <h2>用户</h2>
-        </HeaderLeft>
-        <HeaderRight>
-          <Dropdown
-            menu={{
-              items: [
-                {
-                  key: "logout",
-                  label: (
-                    <Button type="link" onClick={logout}>
-                      登出
-                    </Button>
-                  ),
-                },
-              ],
-            }}
-          >
-            <Button type="link" onClick={(e) => e.preventDefault()}>
-              Hi，{user?.name}
-            </Button>
-          </Dropdown>
-        </HeaderRight>
-      </Header>
+      <PageHeader />
       <Main>
-        <ProjectListScreen />
+        <Router>
+          <Routes>
+            <Route path={"/projects"} element={<ProjectListScreen />} />
+            <Route path="/projects/:projectId/*" element={<ProjectScreen />} />
+            <Route path="*" element={<Navigate to={"/projects"} />} />
+          </Routes>
+        </Router>
       </Main>
     </Container>
   );
 };
+
+const PageHeader = () => {
+  const { logout, user } = useAuth();
+  return (
+    <Header between={true} marginBottom={1}>
+      <HeaderLeft gap={true}>
+        <Button type="link" onClick={resetRouter}>
+          <SoftwareLogo width={"18rem"} color={"rgb(38,132,255)"} />
+        </Button>
+        <h2>项目</h2>
+        <h2>用户</h2>
+      </HeaderLeft>
+      <HeaderRight>
+        <Dropdown
+          menu={{
+            items: [
+              {
+                key: "logout",
+                label: (
+                  <Button type="link" onClick={logout}>
+                    登出
+                  </Button>
+                ),
+              },
+            ],
+          }}
+        >
+          <Button type="link" onClick={(e) => e.preventDefault()}>
+            Hi，{user?.name}
+          </Button>
+        </Dropdown>
+      </HeaderRight>
+    </Header>
+  );
+};
+
+const resetRouter = () => (window.location.href = window.location.origin);
 
 const Header = styled(Row)`
   padding: 3.2rem;
