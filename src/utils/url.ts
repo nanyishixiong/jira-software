@@ -19,7 +19,7 @@ export const useUrlQueryParam = <K extends string>(keys: K[]) => {
       }, {} as { [key in K]: string });
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchParams]),
-    (param: Partial<{ [key in K]: string }>) => {
+    (param: Partial<{ [key in K]: unknown }>) => {
       // 将可迭代对象转换成对象
       const o = cleanObject({
         ...Object.fromEntries(searchParams),
