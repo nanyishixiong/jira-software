@@ -3,11 +3,15 @@ import { ProjectListScreen } from "screens/project-list";
 import { Button, Dropdown } from "antd";
 import styled from "@emotion/styled";
 import { Row } from "components/lib";
+import { ButtonNoPadding } from "components/button-no-padding";
 // 一种以react组件引入svg图片的方式，优点：支持样式配置
 import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 import { Navigate, Routes, Route } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ProjectScreen } from "screens/project";
+import { useState } from "react";
+import { ProjectModal } from "screens/project-list/project-modal";
+import { ProjectPopover } from "components/project-popover";
 
 /**
  * grid 和 flex 各自的应用场景
@@ -21,54 +25,72 @@ import { ProjectScreen } from "screens/project";
  */
 
 export const AuthenticatedApp = () => {
+  const [projectModalOpen, setProjectModalOpen] = useState(false);
   return (
     <Container>
-      <PageHeader />
+      <PageHeader setProjectModalOpen={setProjectModalOpen} />
       <Main>
         <Router>
           <Routes>
-            <Route path={"/projects"} element={<ProjectListScreen />} />
+            <Route
+              path={"/projects"}
+              element={
+                <ProjectListScreen setProjectModalOpen={setProjectModalOpen} />
+              }
+            />
             <Route path="/projects/:projectId/*" element={<ProjectScreen />} />
             <Route path="*" element={<Navigate to={"/projects"} />} />
           </Routes>
         </Router>
       </Main>
+      <ProjectModal
+        projectModalOpen={projectModalOpen}
+        onClose={() => setProjectModalOpen(false)}
+      />
     </Container>
   );
 };
 
-const PageHeader = () => {
-  const { logout, user } = useAuth();
+const PageHeader = (props: {
+  setProjectModalOpen: (isOpen: boolean) => void;
+}) => {
   return (
     <Header between={true} marginBottom={1}>
       <HeaderLeft gap={true}>
-        <Button type="link" onClick={resetRouter}>
+        <ButtonNoPadding onClick={resetRouter}>
           <SoftwareLogo width={"18rem"} color={"rgb(38,132,255)"} />
-        </Button>
-        <h2>项目</h2>
-        <h2>用户</h2>
+        </ButtonNoPadding>
+        <ProjectPopover setProjectModalOpen={props.setProjectModalOpen} />
+        <span>用户</span>
       </HeaderLeft>
       <HeaderRight>
-        <Dropdown
-          menu={{
-            items: [
-              {
-                key: "logout",
-                label: (
-                  <Button type="link" onClick={logout}>
-                    登出
-                  </Button>
-                ),
-              },
-            ],
-          }}
-        >
-          <Button type="link" onClick={(e) => e.preventDefault()}>
-            Hi，{user?.name}
-          </Button>
-        </Dropdown>
+        <User />
       </HeaderRight>
     </Header>
+  );
+};
+
+const User = () => {
+  const { logout, user } = useAuth();
+  return (
+    <Dropdown
+      menu={{
+        items: [
+          {
+            key: "logout",
+            label: (
+              <Button type="link" onClick={logout}>
+                登出
+              </Button>
+            ),
+          },
+        ],
+      }}
+    >
+      <Button type="link" onClick={(e) => e.preventDefault()}>
+        Hi，{user?.name}
+      </Button>
+    </Dropdown>
   );
 };
 
