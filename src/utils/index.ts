@@ -79,6 +79,8 @@ export const useDocumentTitle = (
 
 /**
  * 返回组件挂载状态,还没挂载或已卸载返回false,反之返回true
+ * 实际上React18 之后,在组件卸载之后修改组件状态不会有warning
+ * 具体可以看这篇文章 https://juejin.cn/post/7081171944799731720
  */
 export const useMountedRef = () => {
   const mountedRef = useRef(false);
