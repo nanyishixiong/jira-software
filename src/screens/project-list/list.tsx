@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Pin } from "components/pin";
 import { useEditProject } from "utils/project";
 import { ButtonNoPadding } from "components/button-no-padding";
+import { useProjectModal } from "./utils";
 export interface Project {
   key: number;
   id: number;
@@ -18,11 +19,11 @@ export interface Project {
 interface ListProps extends TableProps<Project> {
   users: User[];
   refresh?: () => void;
-  projectButton: JSX.Element;
 }
 
 export const List = ({ users, ...props }: ListProps) => {
   const { mutate } = useEditProject();
+  const { open } = useProjectModal();
   /**
    * 原函数是这样:
    * pinProject = (pin: boolean) => mutate({ id: project.id, pin })
@@ -87,7 +88,11 @@ export const List = ({ users, ...props }: ListProps) => {
                   items: [
                     {
                       key: "edit",
-                      label: props.projectButton,
+                      label: (
+                        <ButtonNoPadding onClick={open}>
+                          创建项目
+                        </ButtonNoPadding>
+                      ),
                     },
                   ],
                 }}
