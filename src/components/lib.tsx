@@ -38,9 +38,17 @@ export const FullPageLoding = () => (
 
 export const FullPageErrorCallback = ({ error }: { error: Error | null }) => (
   <FullPage>
-    <Typography.Text type="danger">
-      <DevTools />
-      {error?.message}
-    </Typography.Text>
+    <DevTools />
+    <ErrorBox error={error} />
   </FullPage>
 );
+
+// 类型守卫,满足这个函数的value就是Error类型
+const isError = (value: any): value is Error => value?.message;
+
+export const ErrorBox = ({ error }: { error: unknown }) => {
+  if (isError(error)) {
+    return <Typography.Text type="danger">{error.message}</Typography.Text>;
+  }
+  return null;
+};

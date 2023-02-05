@@ -6,7 +6,10 @@ import { useEffect, useRef, useState } from "react";
  * @returns
  */
 export const isVoid = (value: unknown) =>
-  value === undefined || value === null || value === "";
+  value === undefined ||
+  value === null ||
+  value === "" ||
+  value === "undefined";
 
 /**
  * 删除对象中的空值，0除外

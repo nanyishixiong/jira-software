@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 import { Divider, List, Popover, Typography } from "antd";
-import { useProject } from "utils/project";
+import { useProjects } from "utils/project";
 import { ButtonNoPadding } from "components/button-no-padding";
 import { useProjectModal } from "screens/project-list/utils";
 
 export const ProjectPopover = () => {
-  const { data: projects } = useProject();
+  const { data: projects } = useProjects();
   const { open } = useProjectModal();
 
   const pinnedProjects = projects?.filter((project) => project.pin);
@@ -14,7 +14,7 @@ export const ProjectPopover = () => {
       <Typography.Text type={"secondary"}>收藏项目</Typography.Text>
       <List>
         {pinnedProjects?.map((project) => (
-          <List.Item>
+          <List.Item key={project.id}>
             <List.Item.Meta title={project.name} />
           </List.Item>
         ))}

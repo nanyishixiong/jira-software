@@ -8,7 +8,9 @@ import { cleanObject } from "utils";
  * @param keys
  */
 export const useUrlQueryParam = <K extends string>(keys: K[]) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
+  const setSearchParams = useSetUrlSearchParam();
+
   return [
     useMemo(() => {
       return keys.reduce((prev, key) => {
@@ -20,12 +22,7 @@ export const useUrlQueryParam = <K extends string>(keys: K[]) => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchParams]),
     (param: Partial<{ [key in K]: unknown }>) => {
-      // 将可迭代对象转换成对象
-      const o = cleanObject({
-        ...Object.fromEntries(searchParams),
-        ...param,
-      }) as URLSearchParamsInit;
-      return setSearchParams(o);
+      return setSearchParams(param);
     },
   ] as const;
 };
@@ -41,3 +38,15 @@ export const useUrlQueryParam = <K extends string>(keys: K[]) => {
  * 类型就变成
  * type a = readonly ["1", 2, {readonly name: "adsa";}]
  */
+
+export const useSetUrlSearchParam = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  return (param: Partial<{ [key in string]: unknown }>) => {
+    // 将可迭代对象转换成对象
+    const o = cleanObject({
+      ...Object.fromEntries(searchParams),
+      ...param,
+    }) as URLSearchParamsInit;
+    return setSearchParams(o);
+  };
+};
