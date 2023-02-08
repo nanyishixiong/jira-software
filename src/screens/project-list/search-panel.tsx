@@ -2,16 +2,9 @@
 /** 要用css props 需要引入上面的编译指示 */
 import { Input, Form } from "antd";
 import { UserSelect } from "components/user.select";
-import { Project } from "./list";
+import { Project } from "types/Project";
+import { User } from "../../types/User";
 
-export interface User {
-  id: number;
-  name: string;
-  email: string;
-  title: string;
-  organization: string;
-  token: string;
-}
 interface SearchPanelProps {
   users: User[];
   param: Partial<Pick<Project, "name" | "personId">>;
