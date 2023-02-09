@@ -11,3 +11,8 @@ html {
 html body #root .App {
   min-height: 100vh;
 }
+
+.ant-modal-close-x {
+  width: 22px !important;
+  height: 22px !important;
+}
