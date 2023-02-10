@@ -16,6 +16,8 @@ import { Mark } from "components/mark";
 import { useDeleteKanban } from "utils/kanban";
 import { ButtonNoPadding } from "components/button-no-padding";
 import { Row } from "components/lib";
+import React from "react";
+import { Drag, Drop, DropChild } from "components/drag-and-drop";
 
 const TaskTypeIcon = ({ id }: { id: number }) => {
   const { data: taskTypes } = useTaskTypes();
@@ -30,42 +32,63 @@ const TaskTypeIcon = ({ id }: { id: number }) => {
   );
 };
 
-const TaskCard = ({ task }: { task: Task }) => {
-  const { startEdit } = useTasksModal();
-  const { name: keyword } = useTasksSearchParams();
-  return (
-    <Card
-      onClick={() => startEdit(task.id)}
-      style={{ marginBottom: "0.5rem", cursor: "pointer" }}
-      key={task.id}
-    >
-      <div>
-        <Mark keyword={keyword} name={task.name} />
-      </div>
-      <TaskTypeIcon id={task.typeId} />
-    </Card>
-  );
-};
+const TaskCard = React.forwardRef<HTMLDivElement, { task: Task }>(
+  ({ task, ...props }, ref) => {
+    const { startEdit } = useTasksModal();
+    const { name: keyword } = useTasksSearchParams();
+    return (
+      <Card
+        onClick={() => startEdit(task.id)}
+        style={{ marginBottom: "0.5rem", cursor: "pointer" }}
+        key={task.id}
+        ref={ref}
+        {...props}
+      >
+        <div>
+          <Mark keyword={keyword} name={task.name} />
+        </div>
+        <TaskTypeIcon id={task.typeId} />
+      </Card>
+    );
+  }
+);
 
-export const KanbanColumn = ({ kanban }: { kanban: Kanban }) => {
+export const KanbanColumn = React.forwardRef<
+  HTMLDivElement,
+  { kanban: Kanban }
+>(({ kanban, ...props }, ref) => {
   const { data: allTasks } = useTasks(useTasksSearchParams());
   const tasks = allTasks?.filter((task) => task.kanbanId === kanban.id);
 
   return (
-    <Container>
+    <Container ref={ref} {...props}>
       <Row between={true}>
         <h3>{kanban.name}</h3>
-        <More kanban={kanban} />
+        <More kanban={kanban} key={kanban.id} />
       </Row>
       <TasksContainer>
-        {tasks?.map((task) => (
-          <TaskCard task={task} />
-        ))}
+        <Drop
+          type={"ROW"}
+          direction={"vertical"}
+          droppableId={String(kanban.id)}
+        >
+          <DropChild style={{ minHeight: "5px" }}>
+            {tasks?.map((task, taskIndex) => (
+              <Drag
+                draggableId={"task" + task.id}
+                index={taskIndex}
+                key={task.id}
+              >
+                <TaskCard task={task} key={task.id} />
+              </Drag>
+            ))}
+          </DropChild>
+        </Drop>
         <CreateTask kanbanId={kanban.id} />
       </TasksContainer>
     </Container>
   );
-};
+});
 
 const More = ({ kanban }: { kanban: Kanban }) => {
   const { mutateAsync } = useDeleteKanban(useKanbansQueryKey());
