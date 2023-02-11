@@ -3,7 +3,7 @@ import { SearchPanel } from "./search-panel";
 import { useDebounce, useDocumentTitle } from "utils";
 import styled from "@emotion/styled";
 import { useProjects } from "utils/project";
-import { useUser } from "utils/user";
+import { useUsers } from "utils/user";
 import { useProjectModal, useProjectsSearchParams } from "./utils";
 import { ErrorBox, Row } from "components/lib";
 import { ButtonNoPadding } from "components/button-no-padding";
@@ -13,7 +13,7 @@ export const ProjectListScreen = () => {
 
   const [param, setParam] = useProjectsSearchParams();
   const { isLoading, error, data: list } = useProjects(useDebounce(param, 500));
-  const { data: users } = useUser();
+  const { data: users } = useUsers();
   const { open } = useProjectModal();
 
   return (
