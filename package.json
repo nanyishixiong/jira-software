@@ -36,9 +36,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "js": "json-server __json_server_mock__/db.json --watch --port 3001 --middlewares __json_server_mock__/middleware.js",

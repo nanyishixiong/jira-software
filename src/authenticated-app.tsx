@@ -24,7 +24,7 @@ import { UserPopover } from "components/user-popover";
  * 从布局出发用grid
  */
 
-export const AuthenticatedApp = () => {
+export default function AuthenticatedApp() {
   return (
     <Container>
       <Router>
@@ -40,7 +40,7 @@ export const AuthenticatedApp = () => {
       </Router>
     </Container>
   );
-};
+}
 
 const PageHeader = () => {
   return (
