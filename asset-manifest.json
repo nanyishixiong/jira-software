@@ -1,22 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.bd6d2937.css",
-    "main.js": "/static/js/main.e61a8b88.js",
-    "static/js/787.76a0c5bf.chunk.js": "/static/js/787.76a0c5bf.chunk.js",
-    "static/media/left.svg": "/static/media/left.e74de3ec0611913bda20171ee936a782.svg",
-    "static/media/right.svg": "/static/media/right.b423a6cf7075ce3f4b85d573f75a00c3.svg",
-    "static/media/software-logo.svg": "/static/media/software-logo.ec20429850ea9088299d73d53647f340.svg",
-    "static/media/logo.svg": "/static/media/logo.6c866125ba1762184fc3d95cbe79c069.svg",
-    "index.html": "/index.html",
-    "static/media/index.cjs": "/static/media/index.bab733886d4c9bd36de5.cjs",
-    "static/media/task.svg": "/static/media/task.0d593c66e0e98536f0afc485034b428d.svg",
-    "static/media/bug.svg": "/static/media/bug.3f47be455d43d73f6b49f75e12956900.svg",
-    "main.bd6d2937.css.map": "/static/css/main.bd6d2937.css.map",
-    "main.e61a8b88.js.map": "/static/js/main.e61a8b88.js.map",
-    "787.76a0c5bf.chunk.js.map": "/static/js/787.76a0c5bf.chunk.js.map"
+    "main.css": "/jira-software/static/css/main.a8ff77d0.css",
+    "main.js": "/jira-software/static/js/main.f02463f9.js",
+    "static/js/787.76a0c5bf.chunk.js": "/jira-software/static/js/787.76a0c5bf.chunk.js",
+    "static/media/left.svg": "/jira-software/static/media/left.e74de3ec0611913bda20171ee936a782.svg",
+    "static/media/right.svg": "/jira-software/static/media/right.b423a6cf7075ce3f4b85d573f75a00c3.svg",
+    "static/media/software-logo.svg": "/jira-software/static/media/software-logo.ec20429850ea9088299d73d53647f340.svg",
+    "static/media/logo.svg": "/jira-software/static/media/logo.6c866125ba1762184fc3d95cbe79c069.svg",
+    "index.html": "/jira-software/index.html",
+    "static/media/task.svg": "/jira-software/static/media/task.0d593c66e0e98536f0afc485034b428d.svg",
+    "static/media/bug.svg": "/jira-software/static/media/bug.3f47be455d43d73f6b49f75e12956900.svg",
+    "main.a8ff77d0.css.map": "/jira-software/static/css/main.a8ff77d0.css.map",
+    "main.f02463f9.js.map": "/jira-software/static/js/main.f02463f9.js.map",
+    "787.76a0c5bf.chunk.js.map": "/jira-software/static/js/787.76a0c5bf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bd6d2937.css",
-    "static/js/main.e61a8b88.js"
+    "static/css/main.a8ff77d0.css",
+    "static/js/main.f02463f9.js"
   ]
 }
