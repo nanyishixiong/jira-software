@@ -41,7 +41,9 @@
     "test": "craco test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
-    "js": "json-server __json_server_mock__/db.json --watch --port 3001 --middlewares __json_server_mock__/middleware.js"
+    "js": "json-server __json_server_mock__/db.json --watch --port 3001 --middlewares __json_server_mock__/middleware.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build -r git@github.com:nanyishixiong/jira-software.git -b main"
   },
   "eslintConfig": {
     "extends": [
@@ -64,6 +66,7 @@
   },
   "devDependencies": {
     "@welldone-software/why-did-you-render": "^7.0.1",
+    "gh-pages": "^5.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "prettier": "2.8.3"

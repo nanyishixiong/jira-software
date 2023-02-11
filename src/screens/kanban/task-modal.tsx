@@ -3,7 +3,7 @@ import { useForm } from "antd/es/form/Form";
 import { TaskTypeSelect } from "components/task-type-select";
 import { UserSelect } from "components/user.select";
 import { useEffect } from "react";
-import { useDeleteTask, useEditTask, useTask } from "utils/task";
+import { useDeleteTask, useEditTask } from "utils/task";
 import { useTasksModal, useTasksQueryKey } from "./util";
 
 const layout = {
