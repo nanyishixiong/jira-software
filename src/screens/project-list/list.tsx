@@ -7,13 +7,18 @@ import { useDeleteProject, useEditProject } from "utils/project";
 import { ButtonNoPadding } from "components/button-no-padding";
 import { useProjectModal, useProjectQueryKey } from "./utils";
 import { Project } from "types/Project";
+import React from "react";
 
 interface ListProps extends TableProps<Project> {
   users: User[];
   refresh?: () => void;
 }
 
-export const List = ({ users, ...props }: ListProps) => {
+// React.memo 传入一个组件,当props或者组件内使用到的全局状态发生改变(浅比较),才会刷新组件,否则跳过渲染复用最近一次的渲染结果. 适用于子组件需要进行昂贵的计算,减少父组件无关状态对子组件的影响.
+// usememo 也是通过浅比较,记忆一个值,当依赖项发生改变,值才会变化
+export const List = React.memo(({ users, ...props }: ListProps) => {
+  console.log("list render");
+
   const { mutate } = useEditProject(useProjectQueryKey());
 
   /**
@@ -81,7 +86,7 @@ export const List = ({ users, ...props }: ListProps) => {
       {...props}
     />
   );
-};
+});
 
 const More = ({ project }: { project: Project }) => {
   const { startEdit } = useProjectModal();
