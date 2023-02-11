@@ -1,5 +1,4 @@
 import "./wdyr";
-import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
@@ -7,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 
 import { DevTools, loadServer } from "jira-dev-tool";
 import { AppProviders } from "context";
+import { Profiler } from "components/profiler";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -16,7 +16,9 @@ loadServer(() => {
   root.render(
     <AppProviders>
       <DevTools />
-      <App />
+      <Profiler id={"RootApp"} phases={["mount"]}>
+        <App />
+      </Profiler>
     </AppProviders>
   );
 });
