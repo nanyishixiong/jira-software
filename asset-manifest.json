@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/jira-software/static/css/main.a8ff77d0.css",
-    "main.js": "/jira-software/static/js/main.f02463f9.js",
+    "main.js": "/jira-software/static/js/main.09876b83.js",
     "static/js/787.76a0c5bf.chunk.js": "/jira-software/static/js/787.76a0c5bf.chunk.js",
     "static/media/left.svg": "/jira-software/static/media/left.e74de3ec0611913bda20171ee936a782.svg",
     "static/media/right.svg": "/jira-software/static/media/right.b423a6cf7075ce3f4b85d573f75a00c3.svg",
@@ -11,11 +11,11 @@
     "static/media/task.svg": "/jira-software/static/media/task.0d593c66e0e98536f0afc485034b428d.svg",
     "static/media/bug.svg": "/jira-software/static/media/bug.3f47be455d43d73f6b49f75e12956900.svg",
     "main.a8ff77d0.css.map": "/jira-software/static/css/main.a8ff77d0.css.map",
-    "main.f02463f9.js.map": "/jira-software/static/js/main.f02463f9.js.map",
+    "main.09876b83.js.map": "/jira-software/static/js/main.09876b83.js.map",
     "787.76a0c5bf.chunk.js.map": "/jira-software/static/js/787.76a0c5bf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a8ff77d0.css",
-    "static/js/main.f02463f9.js"
+    "static/js/main.09876b83.js"
   ]
 }
