@@ -38,7 +38,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node test",
+    "test": "craco test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "js": "json-server __json_server_mock__/db.json --watch --port 3001 --middlewares __json_server_mock__/middleware.js",
@@ -65,10 +65,12 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^8.0.1",
     "@welldone-software/why-did-you-render": "^7.0.1",
     "gh-pages": "^5.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
+    "msw": "^1.0.1",
     "prettier": "2.8.3"
   },
   "husky": {
